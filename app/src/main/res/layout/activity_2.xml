@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    tools:context=".Activity2">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:fontFamily="serif"
+        android:text="Información de sensores:" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="59dp"
+        android:layout_x="0dp"
+        android:layout_y="105dp"
+        android:text="Acelerómetro:" />
+
+    <TextView
+        android:id="@+id/txtX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="89dp"
+        android:layout_x="0dp"
+        android:layout_y="133dp"
+        android:text="X: " />
+
+    <TextView
+        android:id="@+id/txtY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/txtX"
+        android:layout_x="0dp"
+        android:layout_y="157dp"
+        android:text="Y: " />
+
+    <TextView
+        android:id="@+id/txtZ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/txtY"
+        android:layout_x="0dp"
+        android:layout_y="181dp"
+        android:text="Z: " />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginTop="164dp"
+        android:layout_x="0dp"
+        android:layout_y="33dp"
+        android:text="Grados: " />
+
+    <TextView
+        android:id="@+id/txtXProx"
+        android:layout_width="78dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView8"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="206dp"
+        android:layout_x="0dp"
+        android:layout_y="59dp"
+        android:text="Celcius: " />
+
+    <TextView
+        android:id="@+id/txtGiroscopio2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView8"
+        android:layout_centerVertical="true"
+        android:layout_x="0dp"
+        android:layout_y="233dp"
+        android:text="Humedad: " />
+
+    <TextView
+        android:id="@+id/txtXGiro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="205dp"
+        android:layout_toStartOf="@+id/textView8"
+        android:layout_x="0dp"
+        android:layout_y="262dp"
+        android:text="X: " />
+
+    <Button
+        android:id="@+id/btnGrados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="94dp"
+        android:layout_y="373dp"
+        android:text="Grados"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="297dp" />
+
+    <Button
+        android:id="@+id/btnHumedad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="93dp"
+        android:layout_y="427dp"
+        android:text="Humedad"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="311dp" />
+
+    <EditText
+        android:id="@+id/txtGrados"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="374dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="C°"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="296dp" />
+
+    <EditText
+        android:id="@+id/txtHumedad"
+        android:layout_width="87dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="430dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="%"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="138dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="163dp"
+        android:layout_height="39dp"
+        android:layout_x="0dp"
+        android:layout_y="325dp"
+        android:text="Cambie sus datos actuales aquí:"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="329dp" />
+
+    <Button
+        android:id="@+id/btnJason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="193dp"
+        android:layout_y="426dp"
+        android:text="Ir a JASON"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="57dp" />
+
+</AbsoluteLayout>
