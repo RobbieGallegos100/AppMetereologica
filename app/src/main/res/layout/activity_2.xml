@@ -168,4 +168,14 @@
         tools:layout_editor_absoluteX="117dp"
         tools:layout_editor_absoluteY="57dp" />
 
+    <Button
+        android:id="@+id/btnMeterJson"
+        android:layout_width="170dp"
+        android:layout_height="113dp"
+        android:layout_x="119dp"
+        android:layout_y="35dp"
+        android:text="Meter info a JSON"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="109dp" />
+
 </AbsoluteLayout>

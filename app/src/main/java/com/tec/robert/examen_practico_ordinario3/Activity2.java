@@ -6,8 +6,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +27,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class Activity2 extends AppCompatActivity implements SensorEventListener {
 
     private static final String TAG = "Activity2";
@@ -34,7 +42,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
 
     TextView textX, textY, textZ, textProx, txtXGiro;
     EditText grad, hume;
-    Button gradosB, humedadB, btnJason;
+    Button gradosB, humedadB, btnJason, btn_pasar_json;
 
     @Override
     protected void onPause() {
@@ -82,19 +90,20 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
-        grad =(EditText) findViewById(R.id.txtGrados);
-        hume =(EditText) findViewById(R.id.txtHumedad);
-        gradosB =(Button) findViewById(R.id.btnGrados);
-        humedadB =(Button) findViewById(R.id.btnHumedad);
-        btnJason =(Button) findViewById(R.id.btnJason);
+        btn_pasar_json = findViewById(R.id.btnMeterJson);
+        grad = findViewById(R.id.txtGrados);
+        hume = findViewById(R.id.txtHumedad);
+        gradosB = findViewById(R.id.btnGrados);
+        humedadB = findViewById(R.id.btnHumedad);
+        btnJason = findViewById(R.id.btnJason);
 
-        textX=(TextView) findViewById(R.id.txtX);
-        textY=(TextView) findViewById(R.id.txtY);
-        textZ=(TextView) findViewById(R.id.txtZ);
+        textX= findViewById(R.id.txtX);
+        textY= findViewById(R.id.txtY);
+        textZ= findViewById(R.id.txtZ);
 
-        textProx=(TextView) findViewById(R.id.txtXProx);
+        textProx= findViewById(R.id.txtXProx);
 
-        txtXGiro=(TextView) findViewById(R.id.txtXGiro);
+        txtXGiro= findViewById(R.id.txtXGiro);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -165,6 +174,13 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
             }
         });
 
+        btn_pasar_json.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PasarAJson();
+            }
+        });
+
 
     }
 
@@ -180,6 +196,70 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
     public void openActivity3(){
         Intent intent = new Intent(this, Activity3.class);
         startActivity(intent);
+    }
+
+    public void PasarAJson(){
+
+            String sql = "https://api.jsonbin.io/b/5b01e1fec2e3344ccd96bcea/11";
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            URL url = null;
+            HttpURLConnection conn;
+
+            try{
+                url = new URL(sql);
+                conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestMethod("INSERT");
+
+                conn.connect();
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                String inputLine;
+
+                StringBuffer response = new StringBuffer();
+
+                String json = "";
+
+                while ((inputLine = in.readLine()) != null){
+                    response.append(inputLine);
+                }
+
+                json = response.toString();
+
+                JSONArray jsonArr = null;
+
+                jsonArr = new JSONArray(json);
+                String hora = "", humedad = "", grados = "";
+
+
+
+                for (int i = 0;i < jsonArr.length();i++){
+                    JSONObject jsonObject = jsonArr.getJSONObject(i);
+
+                    jsonObject.optString("Hora de registro");
+                    hora += i+") Hora de registro: " + jsonObject.optString("Hora de registro") + "\n";
+
+                    jsonObject.optInt("Humedad");
+                    humedad += i+") Humedad: " + jsonObject.optInt("Humedad") + "%" + "\n";
+
+                    jsonObject.optInt("Grados");
+                    grados += i+") Grados: " + jsonObject.optInt("Grados") + "°C" + "\n";
+
+                }
+                //mTextViewResult.setText(hora+humedad+grados);
+                //mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
+
+
+            } catch (IOException e){
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
     }
 
 }

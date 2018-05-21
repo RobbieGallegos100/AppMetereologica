@@ -1,5 +1,6 @@
 package com.tec.robert.examen_practico_ordinario3;
 
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
@@ -23,18 +24,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnSens=(Button)findViewById(R.id.botonSensores);
-        listSens=(ListView)findViewById(R.id.listSensor);
+        btnSens= findViewById(R.id.botonSensores);
+        listSens= findViewById(R.id.listSensor);
 
         // Porción de los sensores.
 
         SensorManager sManager = (SensorManager) this
-                .getSystemService(this.SENSOR_SERVICE);
+                .getSystemService(SENSOR_SERVICE);
         List<Sensor> sensorList = sManager.getSensorList(Sensor.TYPE_ALL);
 
         List<String> sensorNames = new ArrayList();
         for (int i = 0; i < sensorList.size(); i++) {
-            sensorNames.add(((Sensor) sensorList.get(i)).getName());
+            sensorNames.add(sensorList.get(i).getName());
         }
 
         ArrayAdapter<String> itemsAdapter =
